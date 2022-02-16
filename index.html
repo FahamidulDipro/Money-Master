@@ -10,6 +10,60 @@
 </head>
 
 <body>
+    <header>
+        <h1 class="text-center mt-10 text-5xl font-bold text-amber-600">Income Statement</h1>
+    </header>
+    <main>
+        <!-- Income, expense and balance section -->
+
+        <section class="flex lg:flex-row md:flex-row sm:flex-col flex-col justify-around mt-10">
+            <div class="image-container">
+                <img src="images/dollars.jpg" alt="dollars">
+            </div>
+            <div class="input-container bg-gray-300 p-10">
+                <h1 class=" text-3xl font-bold">Income</h1>
+                <div class="flex justify-between my-3 ">
+                    <h1 class="mr-5 text-2xl">Income:</h1>
+                    <input type="text" id="income" class="text-2xl p-1 rounded">
+                </div>
+                <h1 class=" text-3xl mt-10 font-bold">Expenses</h1>
+                <div class="flex justify-between mt-5 ">
+                    <h1 class="mr-5 text-2xl">Food:</h1>
+                    <input type="text" id="food" class="text-2xl p-1 rounded">
+                </div>
+                <div class="flex justify-between my-3 ">
+                    <h1 class="mr-5 text-2xl">Rent:</h1>
+                    <input type="text" id="rent" class="text-2xl p-1 rounded">
+                </div>
+                <div class="flex justify-between my-3 ">
+                    <h1 class="mr-5 text-2xl">Clothes: </h1>
+                    <input type="text" id="clothes" class="text-2xl p-1 rounded">
+                </div>
+                <div class="flex justify-center mt-5">
+                    <button class="center p-3 text-2xl bg-amber-700 text-white rounded hover:bg-amber-600" id="calculate-btn">Calculate</button>
+                </div>
+
+                <h1 class="text-center text-2xl font-semibold mt-5">Total Expenses: <span id="total-expenses">5000</span></h1>
+                <h1 class="text-center text-2xl font-semibold mt-5">Balance: <span id="balance">4500</span></h1>
+
+                <!-- Saving Part -->
+                <div class="flex justify-between my-5 ">
+                    <h1 class="mr-5 text-2xl">Save: </h1>
+                    <input type="text" id="saving-input" class="text-2xl p-1 rounded w-1/2"><span class="text-2xl mx-3">%</span>
+                    <button class="text-2xl p-1 rounded text-white bg-amber-700 hover:bg-amber-600" id="saving-btn">Save</button>
+                </div>
+                <h1 class="text-center text-2xl font-semibold mt-5">Saving Amount: <span id="saving-amount">5000</span></h1>
+                <h1 class="text-center text-2xl font-semibold mt-5">Remaining Balance: <span id="remaining-balance">4500</span></h1>
+
+            </div>
+
+        </section>
+
+
+
+
+    </main>
+
 
     <script src="main.js"></script>
 </body>
