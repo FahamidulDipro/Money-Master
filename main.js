@@ -79,7 +79,7 @@ function initialBalance() {
 function balanceAfterSaving() {
     const remainingBalance = getIncome() - getTotalExpenses() - saving(getIncome());
     if (!isNaN(remainingBalance)) {
-        if (remainingBalance < saving(getIncome())) {
+        if (remainingBalance > initialBalance()) {
             const msg = document.getElementById('remaining-balance').style.color = 'red';
             return msg.innerText = 'Insufficient Balance';
 
@@ -93,7 +93,7 @@ function balanceAfterSaving() {
 }
 
 
-//positive only
+//Function which will give positive number values only from input fields
 function positiveOnly(name, num) {
     if (!isNaN(num) && num >= 0) {
         document.getElementById(name + '-err').classList.add('hidden');
@@ -111,7 +111,7 @@ function positiveOnly(name, num) {
 }
 
 
-//Refreshing will set 0
+//Refreshing will set 0 to every input field
 window.onload = function() {
     document.getElementById('income').value = '0';
     document.getElementById('food').value = '0';
