@@ -14,15 +14,16 @@ document.getElementById('saving-btn').addEventListener('click', function() {
 
 // Function for getting income amount
 function getIncome() {
-    return parseFloat(document.getElementById('income').value);
+    incomeValue = parseFloat(document.getElementById('income').value);
+    return positiveOnly('income', incomeValue);
 }
 
 
 // Function for getting expense amount
 function getTotalExpenses() {
-    const foodExpense = parseFloat(document.getElementById('food').value);
-    const rentExpense = parseFloat(document.getElementById('rent').value);
-    const clothExpense = parseFloat(document.getElementById('cloths').value);
+    const foodExpense = positiveOnly('food', parseFloat(document.getElementById('food').value));
+    const rentExpense = positiveOnly('rent', parseFloat(document.getElementById('rent').value));
+    const clothExpense = positiveOnly('cloths', parseFloat(document.getElementById('cloths').value));
     return addExpenses(foodExpense, rentExpense, clothExpense);
 
 }
@@ -52,4 +53,18 @@ function balanceAfterSaving() {
     const incomeValue = getIncome();
     const expenseValue = getTotalExpenses();
     return incomeValue - expenseValue - saving(incomeValue);
+}
+
+
+//positive only
+function positiveOnly(name, num) {
+    if (!isNaN(num) && num >= 0) {
+        document.getElementById(name + '-err').classList.add('hidden');
+        document.getElementById(name + '-err').classList.remove('block');
+        return num;
+
+    } else {
+        document.getElementById(name + '-err').classList.add('block');
+        document.getElementById(name + '-err').classList.remove('hidden');
+    }
 }

@@ -24,20 +24,37 @@
                 <h1 class=" text-3xl font-bold">Income</h1>
                 <div class="flex justify-between my-3 ">
                     <h1 class="mr-5 text-2xl">Income:</h1>
-                    <input type="text" id="income" class="text-2xl p-1 rounded">
+                    <div>
+                        <input type="text" id="income" class="text-2xl p-1 rounded">
+                        <h1 class="text-red-500 hidden " id="income-err">Please enter valid number</h1>
+                    </div>
+
                 </div>
                 <h1 class=" text-3xl mt-10 font-bold">Expenses</h1>
                 <div class="flex justify-between mt-5 ">
                     <h1 class="mr-5 text-2xl">Food:</h1>
-                    <input type="text" id="food" class="text-2xl p-1 rounded">
+                    <div>
+                        <input type="text" id="food" class="text-2xl p-1 rounded">
+                        <h1 class="text-red-500 hidden err-msg hidden" id="food-err">Please enter valid number</h1>
+                    </div>
+
                 </div>
                 <div class="flex justify-between my-3 ">
                     <h1 class="mr-5 text-2xl">Rent:</h1>
-                    <input type="text" id="rent" class="text-2xl p-1 rounded">
+                    <div>
+                        <input type="text" id="rent" class="text-2xl p-1 rounded">
+                        <h1 class="text-red-500 hidden err-msg hidden" id="rent-err">Please enter valid number</h1>
+                    </div>
+
                 </div>
                 <div class="flex justify-between my-3 ">
                     <h1 class="mr-5 text-2xl">Clothes: </h1>
-                    <input type="text" id="cloths" class="text-2xl p-1 rounded">
+                    <div>
+                        <input type="text" id="cloths" class="text-2xl p-1 rounded">
+                        <h1 class="text-red-500 hidden err-msg hidden" id="cloths-err">Please enter valid number</h1>
+
+                    </div>
+
                 </div>
                 <div class="flex justify-center mt-5">
                     <button class="center p-3 text-2xl bg-amber-700 text-white rounded hover:bg-amber-600" id="calculate-btn">Calculate</button>
