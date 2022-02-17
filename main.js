@@ -6,7 +6,7 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
 
 // Saving button functionality
 document.getElementById('saving-btn').addEventListener('click', function() {
-    const savingAmount = saving(initialBalance());
+    const savingAmount = saving(getIncome());
     const remainingBalance = balanceAfterSaving();
     document.getElementById('saving-amount').innerText = savingAmount;
     document.getElementById('remaining-balance').innerText = remainingBalance;
@@ -61,7 +61,6 @@ function saving(income) {
 }
 
 
-
 //Initial Balance Function
 function initialBalance() {
     const incomeValue = getIncome();
@@ -78,14 +77,14 @@ function initialBalance() {
 
 //After Saving Balance Function
 function balanceAfterSaving() {
-    const remainingBal = initialBalance() - saving(initialBalance());
-    if (!isNaN(remainingBal)) {
-        if (remainingBal < 0) {
+    const remainingBalance = getIncome() - getTotalExpenses() - saving(getIncome());
+    if (!isNaN(remainingBalance)) {
+        if (remainingBalance < saving(getIncome())) {
             const msg = document.getElementById('remaining-balance').style.color = 'red';
             return msg.innerText = 'Insufficient Balance';
 
         } else {
-            return remainingBal;
+            return remainingBalance;
         }
 
     } else {
