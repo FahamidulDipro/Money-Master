@@ -6,7 +6,7 @@ document.getElementById('calculate-btn').addEventListener('click', function() {
 
 // Saving button functionality
 document.getElementById('saving-btn').addEventListener('click', function() {
-    const savingAmount = saving(getIncome());
+    const savingAmount = saving(initialBalance());
     const remainingBalance = balanceAfterSaving();
     document.getElementById('saving-amount').innerText = savingAmount;
     document.getElementById('remaining-balance').innerText = remainingBalance;
@@ -26,8 +26,13 @@ function getTotalExpenses() {
     const clothExpense = parseFloat(positiveOnly('cloths', document.getElementById('cloths').value));
     const totalExpenses = addExpenses(foodExpense, rentExpense, clothExpense);
     if (!isNaN(totalExpenses) && totalExpenses >= 0) {
+        document.getElementById('saving-btn').disabled = false;
         return totalExpenses;
     } else {
+        //Wrong Inputs in Income and Expenses field will make the save button disabled
+        const savingBtn = document.getElementById('saving-btn');
+        savingBtn.style.backgroundColor = 'gray';
+        savingBtn.disabled = true;
         return document.getElementById('total-expenses').innerText = '0';
     }
 
@@ -43,7 +48,12 @@ function saving(income) {
     const rate = parseFloat(positiveOnly('saving-input', document.getElementById('saving-input').value));
     const total = income * (rate / 100);
     if (!isNaN(total)) {
-        return total;
+        if (total <= initialBalance()) {
+            return total;
+        } else {
+            return document.getElementById('saving-amount').innerText = 'Insufficient Balance';
+        }
+
     } else {
         return document.getElementById('saving-amount').innerText = '0';
     }
@@ -62,15 +72,13 @@ function initialBalance() {
     } else {
         // return document.getElementById('balance').innerText = '0';
         const msg = document.getElementById('balance').style.color = 'red';
-        return msg.innerText = 'Insufficient Balance';
+        return msg.innerText = 'Insufficient Income';
     }
 }
 
 //After Saving Balance Function
 function balanceAfterSaving() {
-    const incomeValue = getIncome();
-    const expenseValue = getTotalExpenses();
-    const remainingBal = incomeValue - expenseValue - saving(incomeValue);
+    const remainingBal = initialBalance() - saving(initialBalance());
     if (!isNaN(remainingBal)) {
         if (remainingBal < 0) {
             const msg = document.getElementById('remaining-balance').style.color = 'red';
