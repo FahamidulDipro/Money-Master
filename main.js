@@ -14,17 +14,22 @@ document.getElementById('saving-btn').addEventListener('click', function() {
 
 // Function for getting income amount
 function getIncome() {
-    incomeValue = parseFloat(document.getElementById('income').value);
-    return positiveOnly('income', incomeValue);
+    incomeValue = document.getElementById('income').value;
+    return parseFloat(positiveOnly('income', incomeValue));
 }
 
 
 // Function for getting expense amount
 function getTotalExpenses() {
-    const foodExpense = positiveOnly('food', parseFloat(document.getElementById('food').value));
-    const rentExpense = positiveOnly('rent', parseFloat(document.getElementById('rent').value));
-    const clothExpense = positiveOnly('cloths', parseFloat(document.getElementById('cloths').value));
-    return addExpenses(foodExpense, rentExpense, clothExpense);
+    const foodExpense = parseFloat(positiveOnly('food', document.getElementById('food').value));
+    const rentExpense = parseFloat(positiveOnly('rent', document.getElementById('rent').value));
+    const clothExpense = parseFloat(positiveOnly('cloths', document.getElementById('cloths').value));
+    const totalExpenses = addExpenses(foodExpense, rentExpense, clothExpense);
+    if (!isNaN(totalExpenses) && totalExpenses >= 0) {
+        return totalExpenses;
+    } else {
+        return document.getElementById('total-expenses').innerText = '0';
+    }
 
 }
 
@@ -35,8 +40,14 @@ function addExpenses(num1, num2, num3) {
 
 //Function for savings
 function saving(income) {
-    const rate = parseFloat(document.getElementById('saving-input').value);
-    return income * (rate / 100);
+    const rate = parseFloat(positiveOnly('saving-input', document.getElementById('saving-input').value));
+    const total = income * (rate / 100);
+    if (!isNaN(total)) {
+        return total;
+    } else {
+        return document.getElementById('saving-amount').innerText = '0';
+    }
+
 }
 
 
@@ -45,14 +56,33 @@ function saving(income) {
 function initialBalance() {
     const incomeValue = getIncome();
     const totalExpenses = getTotalExpenses();
-    return incomeValue - totalExpenses;
+    const initialBalance = incomeValue - totalExpenses;
+    if (initialBalance >= 0) {
+        return initialBalance;
+    } else {
+        // return document.getElementById('balance').innerText = '0';
+        const msg = document.getElementById('balance').style.color = 'red';
+        return msg.innerText = 'Insufficient Balance';
+    }
 }
 
 //After Saving Balance Function
 function balanceAfterSaving() {
     const incomeValue = getIncome();
     const expenseValue = getTotalExpenses();
-    return incomeValue - expenseValue - saving(incomeValue);
+    const remainingBal = incomeValue - expenseValue - saving(incomeValue);
+    if (!isNaN(remainingBal)) {
+        if (remainingBal < 0) {
+            const msg = document.getElementById('remaining-balance').style.color = 'red';
+            return msg.innerText = 'Insufficient Balance';
+
+        } else {
+            return remainingBal;
+        }
+
+    } else {
+        return document.getElementById('remaining-balance').innerText = '0';
+    }
 }
 
 

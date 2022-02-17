@@ -66,7 +66,10 @@
                 <!-- Saving Part -->
                 <div class="flex justify-between my-5 ">
                     <h1 class="mr-5 text-2xl">Save: </h1>
-                    <input type="text" id="saving-input" class="text-2xl p-1 rounded w-1/2"><span class="text-2xl mx-3">%</span>
+                    <div>
+                        <input type="text" id="saving-input" class="text-2xl p-1 rounded w-1/2"><span class="text-2xl mx-3">%</span>
+                        <h1 class="text-red-500 hidden err-msg hidden" id="saving-input-err">Please enter valid number</h1>
+                    </div>
                     <button class="text-2xl p-1 rounded text-white bg-amber-700 hover:bg-amber-600" id="saving-btn">Save</button>
                 </div>
                 <h1 class="text-center text-2xl font-semibold mt-5">Saving Amount: <span id="saving-amount">0</span></h1>
